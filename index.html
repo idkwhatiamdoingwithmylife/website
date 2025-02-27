@@ -143,11 +143,8 @@
                 const data = await response.json();
                 if (data.views !== undefined) {
                     document.getElementById('viewCounter').textContent = `Views: ${data.views}`;
-                    if (data.message) {
-                        document.getElementById('viewCounter').textContent += ` - ${data.message}`;
-                    }
                 } else {
-                    document.getElementById('viewCounter').textContent = 'Error retrieving views';
+                    document.getElementById('viewCounter').textContent = data.message;
                 }
             } catch (error) {
                 document.getElementById('viewCounter').textContent = 'Error retrieving views';
