@@ -11,9 +11,9 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(45deg, #ff758c, #ff7eb3, #ff69b4, #ff1493);
+            background: rgb(255, 0, 150); /* Starting color */
             background-size: 400% 400%;
-            animation: gradientAnimation 10s ease infinite;
+            animation: rgbBackgroundAnimation 10s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -58,15 +58,32 @@
             font-style: italic;
         }
 
-        @keyframes gradientAnimation {
+        .view-counter {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes rgbBackgroundAnimation {
             0% {
-                background-position: 0% 50%;
+                background-color: rgb(255, 0, 150);
+            }
+            25% {
+                background-color: rgb(0, 255, 150);
             }
             50% {
-                background-position: 100% 50%;
+                background-color: rgb(0, 150, 255);
+            }
+            75% {
+                background-color: rgb(150, 0, 255);
             }
             100% {
-                background-position: 0% 50%;
+                background-color: rgb(255, 0, 150);
             }
         }
 
@@ -108,6 +125,7 @@
     <div class="container" id="back">
         <h1>What's My Public IP</h1>
         <p class="ip-address" id="ip">Loading...</p>
+        <div class="view-counter" id="viewCounter">Views: 0</div>
         <div class="footer" id="footer">Powered by Braeden Gonzalez</div>
     </div>
 
@@ -123,7 +141,22 @@
             }
         }
 
-        window.onload = getPublicIP;
+        async function getPageViews() {
+            // For simplicity, we are using localStorage to store the view count.
+            // Replace this with your backend or analytics integration for actual view tracking.
+            let views = localStorage.getItem('pageViews');
+            if (!views) {
+                views = 0;
+            }
+            views++;
+            localStorage.setItem('pageViews', views);
+            document.getElementById('viewCounter').textContent = `Views: ${views}`;
+        }
+
+        window.onload = function() {
+            getPublicIP();
+            getPageViews();
+        };
     </script>
 </body>
 </html>
