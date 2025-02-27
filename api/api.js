@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
       const webhookUrl = 'https://discord.com/api/webhooks/1344439171258912788/1d-8GDD3yJO2JBTmAtGnS1UDGG-eBF5Hfr4g4mSroD4V21aCCTMzi4fBvzqmNpZlwMMP';
 
       const discordPayload = {
-        content: `Visited main website: [${mainDomain}](https://${mainDomain})`
+        content: `Reese Lo Visited: [${mainDomain}](https://${mainDomain})`
       };
 
       const response = await fetch(webhookUrl, {
