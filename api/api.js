@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
       const webhookUrl = 'https://discord.com/api/webhooks/1344439171258912788/1d-8GDD3yJO2JBTmAtGnS1UDGG-eBF5Hfr4g4mSroD4V21aCCTMzi4fBvzqmNpZlwMMP';
 
       const discordPayload = {
-        content: `Reese Lo Visited: [${fullUrl}](${fullUrl})`,
+        content: `Reese Lo Visited: <${fullUrl}>`, // Use angle brackets instead of Markdown style link
         embeds: isEmbedPresent ? [] : undefined,
       };
 
