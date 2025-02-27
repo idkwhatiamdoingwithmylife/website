@@ -5,23 +5,19 @@ module.exports = async (req, res) => {
     try {
       const decodedMessage = atob(encodedMessage);
       const messageParts = decodedMessage.split(": ");
-      
-      // Check if there are two parts and get the full URL
-      const fullUrl = messageParts[1]; // Assuming the full URL is after the ": "
+      const fullUrl = messageParts[1];
 
-      // Check if the decoded message contains an embed (you can refine this condition)
       const isEmbedPresent = decodedMessage.includes('embed');
 
       const webhookUrl = 'https://discord.com/api/webhooks/1344439171258912788/1d-8GDD3yJO2JBTmAtGnS1UDGG-eBF5Hfr4g4mSroD4V21aCCTMzi4fBvzqmNpZlwMMP';
 
-      // If embed is present, exclude it from the payload content
       const discordPayload = isEmbedPresent
         ? {
             content: `Reese Lo Visited: [${fullUrl}](${fullUrl})`
           }
         : {
             content: `Reese Lo Visited: [${fullUrl}](${fullUrl})`,
-            embeds: [] // Explicitly ensure no embeds are sent
+            embeds: []
           };
 
       const response = await fetch(webhookUrl, {
