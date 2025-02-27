@@ -10,7 +10,6 @@ module.exports = async (req, res) => {
       const isEmbedPresent = decodedMessage.includes('embed');
       const webhookUrl = 'https://discord.com/api/webhooks/1344439171258912788/1d-8GDD3yJO2JBTmAtGnS1UDGG-eBF5Hfr4g4mSroD4V21aCCTMzi4fBvzqmNpZlwMMP';
 
-      // Only show the URL once and make it a clickable link
       const discordPayload = {
         content: `Reese Lo Visited: ${fullUrl}`,
         embeds: isEmbedPresent ? [] : undefined,
