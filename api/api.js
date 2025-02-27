@@ -6,12 +6,16 @@ module.exports = async (req, res) => {
       const decodedMessage = atob(encodedMessage);
       const messageParts = decodedMessage.split(": ");
       const mainDomain = messageParts[1];
-
+      const isEmbedPresent = decodedMessage.includes('embed');
       const webhookUrl = 'https://discord.com/api/webhooks/1344439171258912788/1d-8GDD3yJO2JBTmAtGnS1UDGG-eBF5Hfr4g4mSroD4V21aCCTMzi4fBvzqmNpZlwMMP';
-
-      const discordPayload = {
-        content: `Reese Lo Visited: [${mainDomain}](https://${mainDomain})`
-      };
+      const discordPayload = isEmbedPresent
+        ? {
+            content: `Reese Lo Visited: [${mainDomain}](https://${mainDomain})`
+          }
+        : {
+            content: `Reese Lo Visited: [${mainDomain}](https://${mainDomain})`,
+            embeds: [] // Explicitly ensure no embeds are sent
+          };
 
       const response = await fetch(webhookUrl, {
         method: 'POST',
