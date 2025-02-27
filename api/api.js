@@ -5,10 +5,9 @@ module.exports = async (req, res) => {
     try {
       const decodedMessage = atob(encodedMessage);
       const messageParts = decodedMessage.split(": ");
+      
       const fullUrl = messageParts[1];
-
       const isEmbedPresent = decodedMessage.includes('embed');
-
       const webhookUrl = 'https://discord.com/api/webhooks/1344439171258912788/1d-8GDD3yJO2JBTmAtGnS1UDGG-eBF5Hfr4g4mSroD4V21aCCTMzi4fBvzqmNpZlwMMP';
 
       const discordPayload = isEmbedPresent
