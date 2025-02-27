@@ -1,10 +1,7 @@
 module.exports = async (req, res) => {
   const encodedMessage = req.query.message;
-  const apiKeyBinary = req.query.apiKey;
 
-  const expectedApiKeyBinary = '00110001 00110010 00110011 00110100';
-
-  if (apiKeyBinary === expectedApiKeyBinary && encodedMessage) {
+  if (encodedMessage) {
     try {
       const decodedMessage = atob(encodedMessage);
 
@@ -25,6 +22,6 @@ module.exports = async (req, res) => {
       res.status(500).json({ error: 'Failed to decode Base64 message' });
     }
   } else {
-    res.status(403).json({ error: 'Invalid API Key or Missing Message' });
+    res.status(400).json({ error: 'No message provided' });
   }
 };
